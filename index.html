@@ -164,16 +164,16 @@
     }
 
     // Função para buscar os produtos do servidor
-    function getProducts() {
-      fetch('http://localhost:3000/products')
-        .then(response => response.json())
-        .then(products => {
-          displayProducts(products);
-        })
-        .catch(error => {
-          console.error('Erro ao buscar os produtos:', error);
-        });
-    }
+function getProducts() {
+  fetch('https://backhcimports.hyagocolares.repl.co/products')
+    .then(response => response.json())
+    .then(products => {
+      displayProducts(products);
+    })
+    .catch(error => {
+      console.error('Erro ao buscar os produtos:', error);
+    });
+}
 
     // Event listener para adicionar produto
     document.getElementById('addProductForm').addEventListener('submit', addProduct);
