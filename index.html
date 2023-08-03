@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Gerenciador de Produtos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    form input {
+      margin-bottom: 10px;
+      padding: 5px;
+    }
+
+    form button {
+      padding: 10px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    .products-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      grid-gap: 20px;
+    }
+
+    .product-item {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+
+    .product-item img {
+      max-width: 100%;
+      height: auto;
+      margin-bottom: 10px;
+    }
+
+    .product-item button {
+      background-color: #f44336;
+      color: white;
+      border: none;
+      cursor: pointer;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <h1>Gerenciador de Produtos</h1>
+
+    <form id="addProductForm">
+      <input type="text" id="imageUrl" placeholder="URL da Imagem">
+      <input type="text" id="name" placeholder="Nome do Produto">
+      <input type="number" id="price" placeholder="Preço">
+      <textarea id="message" placeholder="Mensagem"></textarea>
+      <button type="submit">Adicionar Produto</button>
+    </form>
+
+    <ul class="products-list" id="productsList">
+      <!-- Lista de produtos será preenchida aqui -->
+    </ul>
+  </div>
+  </div>
+
+  <script>
+    // Função para exibir os produtos
+    function displayProducts(products) {
+      const productsList = document.getElementById('productsList');
+      productsList.innerHTML = '';
+
+      products.forEach(product => {
+        const productItem = document.createElement('li');
+        productItem.classList.add('product-item');
+
+        const productImage = document.createElement('img');
+        productImage.src = product.imageUrl;
+        productItem.appendChild(productImage);
+
+        const productInfo = document.createElement('div');
+        productInfo.innerHTML = `
+          <strong>${product.name}</strong>
+          <p>Preço: R$ ${product.price.toFixed(2)}</p>
+          <p>${product.message}</p>
+        `;
+        productItem.appendChild(productInfo);
+
+        const deleteButton = document.createElement('button');
+        deleteButton.innerText = 'Deletar';
+        deleteButton.addEventListener('click', () => deleteProduct(product.id));
+        productItem.appendChild(deleteButton);
+
+        productsList.appendChild(productItem);
+      });
+    }
+
+    // Função para adicionar um novo produto
+    function addProduct(event) {
+      event.preventDefault();
+
+      const imageUrl = document.getElementById('imageUrl').value;
+      const name = document.getElementById('name').value;
+      const price = parseFloat(document.getElementById('price').value);
+      const message = document.getElementById('message').value;
+
+      fetch('http://localhost:3000/products', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          imageUrl,
+          name,
+          price,
+          message,
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          getProducts();
+        })
+        .catch(error => {
+          console.error('Erro ao adicionar o produto:', error);
+        });
+    }
+
+    // Função para deletar um produto
+    function deleteProduct(productId) {
+      fetch(`http://localhost:3000/products/${productId}`, {
+        method: 'DELETE',
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+          getProducts();
+        })
+        .catch(error => {
+          console.error('Erro ao deletar o produto:', error);
+        });
+    }
+
+    // Função para buscar os produtos do servidor
+    function getProducts() {
+      fetch('http://localhost:3000/products')
+        .then(response => response.json())
+        .then(products => {
+          displayProducts(products);
+        })
+        .catch(error => {
+          console.error('Erro ao buscar os produtos:', error);
+        });
+    }
+
+    // Event listener para adicionar produto
+    document.getElementById('addProductForm').addEventListener('submit', addProduct);
+
+    // Inicialização: buscar os produtos do servidor
+    getProducts();
+  </script>
+</body>
+
+</html>
