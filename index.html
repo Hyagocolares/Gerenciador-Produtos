@@ -126,7 +126,7 @@
       const price = parseFloat(document.getElementById('price').value);
       const message = document.getElementById('message').value;
 
-      fetch('http://localhost:3000/products', {
+      fetch('https://backhcimports.hyagocolares.repl.co/products', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -150,7 +150,7 @@
 
     // Função para deletar um produto
     function deleteProduct(productId) {
-      fetch(`http://localhost:3000/products/${productId}`, {
+      fetch(`https://backhcimports.hyagocolares.repl.co/products/${productId}`, {
         method: 'DELETE',
       })
         .then(response => response.json())
@@ -164,16 +164,16 @@
     }
 
     // Função para buscar os produtos do servidor
-function getProducts() {
-  fetch('https://backhcimports.hyagocolares.repl.co/products')
-    .then(response => response.json())
-    .then(products => {
-      displayProducts(products);
-    })
-    .catch(error => {
-      console.error('Erro ao buscar os produtos:', error);
-    });
-}
+    function getProducts() {
+      fetch('https://backhcimports.hyagocolares.repl.co/products')
+        .then(response => response.json())
+        .then(products => {
+          displayProducts(products);
+        })
+        .catch(error => {
+          console.error('Erro ao buscar os produtos:', error);
+        });
+    }
 
     // Event listener para adicionar produto
     document.getElementById('addProductForm').addEventListener('submit', addProduct);
