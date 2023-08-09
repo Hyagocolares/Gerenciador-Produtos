@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Gerenciador de Produtos</title>
+  <link rel="icon" href="https://cdn.icon-icons.com/icons2/2839/PNG/512/system_file_manager_icon_180959.png">
+  <link rel="stylesheet" href="./product.css">
+</head>
+<body>
+  <div class="container">
+    <h1>Gerenciador de Produtos</h1>
+
+    <form id="addProductForm">
+      <div class="error-message" id="error-message">Por favor, preencha todos os campos.</div>
+      <input type="text" id="imageUrl" placeholder="URL da Imagem Principal">
+      <input type="text" id="imageUrls" placeholder="URLs Adicionais de Imagem (separadas por vírgula)">
+      <input type="text" id="videoUrl" placeholder="URL do Vídeo">
+      <input type="text" id="name" placeholder="Nome do Produto">
+      <input type="number" id="price" placeholder="Preço">
+      <textarea id="message" placeholder="Mensagem"></textarea>
+      <button type="submit">Adicionar Produto</button>
+    </form>
+
+    <ul class="products-list" id="productsList">
+      <!-- Lista de produtos será preenchida aqui -->
+    </ul>
+  </div>
+  <script src="./product.js"></script>
+</body>
+</html>
