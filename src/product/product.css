@@ -1,5 +1,8 @@
 body {
   font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
 }
 
 .container {
@@ -18,11 +21,7 @@ form {
   margin-bottom: 20px;
 }
 
-form input {
-  margin-bottom: 10px;
-  padding: 5px;
-}
-
+form input,
 form textarea {
   margin-bottom: 10px;
   padding: 5px;
@@ -49,6 +48,8 @@ ul {
 .product-item {
   border: 1px solid #ddd;
   padding: 10px;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-item img {
@@ -62,12 +63,13 @@ ul {
   border: none;
   cursor: pointer;
   width: 100%;
+  margin-top: auto;
 }
 
 .error-message {
   color: red;
   font-weight: bold;
-  display: none
+  display: none;
 }
 
 .product-item .delete-button {
