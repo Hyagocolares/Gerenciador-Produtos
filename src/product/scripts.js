@@ -134,7 +134,7 @@ function editProduct(productId) {
         const message = document.getElementById("edit-message").value;
 
         fetch(
-          `https://backhcimports.hyagocolares.repl.co/products/${productId}`,
+          `https://hcimports.hyagocolares.repl.co/products/${productId}`,
           {
             method: "PUT",
             headers: {
