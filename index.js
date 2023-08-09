@@ -36,6 +36,6 @@ if (response.ok) {
 
   const cadastroButton = document.getElementById('cadastroButton');
   cadastroButton.addEventListener('click', () => {
-    window.location.href = '/ssrc/user/user.html'; // Redireciona para a página de cadastro
+    window.location.href = '/src/user/user.html'; // Redireciona para a página de cadastro
   });
 });
