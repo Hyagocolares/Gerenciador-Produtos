@@ -117,7 +117,7 @@ function editProduct(productId) {
       const editForm = document.createElement("form");
       editForm.innerHTML = `
         <input type="text" id="edit-imageUrl" value="${product.imageUrl}">
-        <input type="text" id="edit-imageUrls" value="${product.imageUrls}">
+        <input type="text" id="edit-imageUrls" value="${product.imageUrls.join(",")}">
         <input type="text" id="edit-videoUrl" value="${product.videoUrl}">
         <input type="text" id="edit-name" value="${product.name}">
         <input type="number" id="edit-price" value="${product.price}">
