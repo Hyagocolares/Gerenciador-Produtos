@@ -117,7 +117,7 @@ function editProduct(productId) {
       const editForm = document.createElement("form");
       editForm.innerHTML = `
         <input type="text" id="edit-imageUrl" value="${product.imageUrl}">
-        <input type="text" id="edit-imageUrls" value="${product.imageUrls}">
+        <input type="text" id="edit-imageUrls" value="${product.imageUrls.join(', ')}">
         <input type="text" id="edit-videoUrl" value="${product.videoUrl}">
         <input type="text" id="edit-name" value="${product.name}">
         <input type="number" id="edit-price" value="${product.price}">
@@ -126,8 +126,10 @@ function editProduct(productId) {
       `;
       editForm.addEventListener("submit", (event) => {
         event.preventDefault();
+
+        // Fetch the values from the form fields
         const imageUrl = document.getElementById("edit-imageUrl").value;
-        const imageUrls = document.getElementById("edit-imageUrls").value;
+        const imageUrls = document.getElementById("edit-imageUrls").value.split(', ').map((url) => url.trim());
         const videoUrl = document.getElementById("edit-videoUrl").value;
         const name = document.getElementById("edit-name").value;
         const price = parseFloat(document.getElementById("edit-price").value);
