@@ -40,10 +40,7 @@ function addProduct(event) {
   event.preventDefault();
 
   const imageUrl = document.getElementById("imageUrl").value;
-  const imageUrls = document
-    .getElementById("imageUrls")
-    .value.split(",")
-    .map((url) => url.trim());
+  const imageUrls = document.getElementById("imageUrls").value;
   const videoUrl = document.getElementById("videoUrl").value;
   const name = document.getElementById("name").value;
   const price = parseFloat(document.getElementById("price").value);
@@ -117,7 +114,7 @@ function editProduct(productId) {
       const editForm = document.createElement("form");
       editForm.innerHTML = `
         <input type="text" id="edit-imageUrl" value="${product.imageUrl}">
-        <input type="text" id="edit-imageUrls" value="${product.imageUrls.join(",")}">
+        <input type="text" id="edit-imageUrls" value="${product.imageUrls}">
         <input type="text" id="edit-videoUrl" value="${product.videoUrl}">
         <input type="text" id="edit-name" value="${product.name}">
         <input type="number" id="edit-price" value="${product.price}">
@@ -135,9 +132,6 @@ function editProduct(productId) {
         const price = parseFloat(document.getElementById("edit-price").value);
         const message = document.getElementById("edit-message").value;
 
-        // Split the imageUrls string into an array
-        const imageUrlsArray = imageUrls.split(",").map((url) => url.trim());
-        
         fetch(
           `https://hcimports.hyagocolares.repl.co/products/${productId}`,
           {
