@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const enteredAdminPassword = document.getElementById('adminPassword').value;
 
     try {
-      const adminPasswordResponse = await fetch('https://hcimports.hyagocolares.repl.co/admin-password');
+      const adminPasswordResponse = await fetch('https://backhcimports.hyagocolares.repl.co/admin-password');
       const adminPasswordData = await adminPasswordResponse.json();
 
       if (adminPasswordResponse.ok) {
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         if (enteredAdminPassword === adminPassword) {
           try {
-            const registerResponse = await fetch('https://hcimports.hyagocolares.repl.co/register', {
+            const registerResponse = await fetch('https://backhcimports.hyagocolares.repl.co/register', {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json'
