@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const password = passwordInput.value;
 
     try {
-      const response = await fetch('https://hcimports.hyagocolares.repl.co/login', {
+      const response = await fetch('https://backhcimports.hyagocolares.repl.co/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
